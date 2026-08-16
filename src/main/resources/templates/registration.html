@@ -1,0 +1,326 @@
+<html lang="en" th:replace="~{base::layout(~{::main})}">
+	<body>
+		<main class="registration-page">
+
+		    <div class="container py-5">
+
+		        <div class="row shadow-lg rounded-5 overflow-hidden register-wrapper">
+
+		            <!-- LEFT PANEL -->
+
+		            <div class="col-lg-5 register-left">
+
+		                <div class="overlay">
+
+		                    <span class="hero-badge">
+		                        <i class="fa-solid fa-briefcase"></i>
+		                        HR SYNERGY CAREERS
+		                    </span>
+
+		                    <h1>
+		                        Join
+		                        <span>HR Synergy</span>
+		                    </h1>
+
+		                    <p>
+		                        Build your professional career with India's modern HR
+		                        platform. Register today and unlock exciting career
+		                        opportunities.
+		                    </p>
+
+		                    <div class="feature-list">
+
+		                        <div class="feature">
+		                            <i class="fa-solid fa-chart-line"></i>
+		                            Career Growth
+		                        </div>
+
+		                        <div class="feature">
+		                            <i class="fa-solid fa-users"></i>
+		                            Professional Team
+		                        </div>
+
+		                        <div class="feature">
+		                            <i class="fa-solid fa-graduation-cap"></i>
+		                            Learning Opportunities
+		                        </div>
+
+		                        <div class="feature">
+		                            <i class="fa-solid fa-building"></i>
+		                            Modern Workplace
+		                        </div>
+
+		                    </div>
+
+		                </div>
+
+		            </div>
+
+		            <!-- RIGHT PANEL -->
+
+		            <div class="col-lg-7 bg-white">
+
+		                <div class="p-5">
+
+		                    <div class="text-center mb-4">
+
+		                        <h2 class="fw-bold">
+		                            Candidate Registration
+		                        </h2>
+
+		                        <p class="text-secondary">
+		                            Create your HR Synergy account
+		                        </p>
+
+		                    </div>
+
+		                    <form th:action="@{/registration}"
+		                          method="post"
+		                          th:object="${udto}">
+								  <div th:if="${msg}" class="alert alert-info alert-dismissible fade show" role="alert">
+								      <span th:text="${msg}"></span>
+								      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+								  </div>
+
+		                        <!-- Name + Gender -->
+
+		                        <div class="row">
+
+		                            <div class="col-md-6 mb-3">
+
+		                                <label class="form-label">
+		                                    Full Name
+		                                </label>
+
+		                                <input
+		                                        type="text"
+		                                        th:field="*{name}"
+		                                        class="form-control custom-input"
+		                                        placeholder="Enter your full name">
+
+		                            </div>
+
+		                            <div class="col-md-6 mb-3">
+
+		                                <label class="form-label">
+		                                    Gender
+		                                </label>
+
+										<select th:field="*{gender}" class="form-select custom-input">
+										    <option value="">Select Gender</option>
+										    <option value="Male">Male</option>
+										    <option value="Female">Female</option>
+										    <option value="Other">Other</option>
+										</select>
+
+		                            </div>
+
+		                        </div>
+
+		                        <!-- Email + Password -->
+
+		                        <div class="row">
+
+		                            <div class="col-md-6 mb-3">
+
+		                                <label>Email Address</label>
+
+		                                <input
+		                                        type="email"
+		                                        th:field="*{emailaddress}"
+		                                        class="form-control custom-input"
+		                                        placeholder="example@gmail.com">
+
+		                            </div>
+
+		                            <div class="col-md-6 mb-3">
+
+		                                <label>Password</label>
+
+		                                <input
+		                                        type="password"
+		                                        th:field="*{password}"
+		                                        class="form-control custom-input">
+
+		                            </div>
+
+		                        </div>
+
+		                        <!-- Contact + Qualification -->
+
+		                        <div class="row">
+
+		                            <div class="col-md-6 mb-3">
+
+		                                <label>Contact Number</label>
+
+		                                <input
+		                                        type="text"
+		                                        th:field="*{contactno}"
+		                                        class="form-control custom-input">
+
+		                            </div>
+
+		                            <div class="col-md-6 mb-3">
+
+		                                <label>Qualification</label>
+
+		                                <input
+		                                        type="text"
+		                                        th:field="*{qualification}"
+		                                        class="form-control custom-input">
+
+		                            </div>
+
+		                        </div>
+
+		                        <!-- Experience -->
+
+		                        <div class="mb-3">
+
+		                            <label>Experience</label>
+
+									<select th:field="*{experience}" class="form-select custom-input">
+									    <option value="">Select Experience</option>
+									    <option value="Fresher">Fresher</option>
+									    <option value="1 Year">1 Year</option>
+									    <option value="2 Years">2 Years</option>
+									    <option value="3+ Years">3+ Years</option>
+									</select>
+
+		                        </div>
+
+		                        <!-- Skills -->
+
+		                        <div class="mb-3">
+
+		                            <label>Key Skills</label>
+
+		                            <textarea
+		                                    th:field="*{Keyskill}"
+		                                    rows="3"
+		                                    class="form-control custom-input"></textarea>
+
+		                        </div>
+
+		                        <!-- Address -->
+
+		                        <div class="mb-3">
+
+		                            <label>Address</label>
+
+		                            <textarea
+		                                    th:field="*{address}"
+		                                    rows="3"
+		                                    class="form-control custom-input"></textarea>
+
+		                        </div>
+
+		                        <div class="alert alert-success border-0">
+
+		                            <i class="fa-solid fa-shield-halved me-2"></i>
+
+		                            Your personal information is securely protected.
+
+		                        </div>
+
+		                        <div class="d-flex gap-3">
+
+									<button type="submit" class="btn btn-register flex-fill">
+									    Register
+									</button>
+
+		                            <a th:href="@{/login}"
+		                               class="btn btn-login flex-fill">
+
+		                                Login
+
+		                            </a>
+
+		                        </div>
+
+		                    </form>
+
+		                </div>
+
+		            </div>
+
+		        </div>
+
+		    </div>
+
+			
+			<section class="why-register py-5">
+
+			    <div class="container">
+
+			        <div class="text-center mb-5">
+
+			            <h2 class="fw-bold">
+			                Why Register with HR Synergy?
+			            </h2>
+
+			            <p class="text-muted">
+			                Everything you need to accelerate your career.
+			            </p>
+
+			        </div>
+
+			        <div class="row g-4">
+
+			            <div class="col-md-4">
+			                <div class="why-card">
+			                    <i class="fa-solid fa-briefcase"></i>
+			                    <h5>Latest Job Opportunities</h5>
+			                    <p>Access verified openings from trusted employers.</p>
+			                </div>
+			            </div>
+
+			            <div class="col-md-4">
+			                <div class="why-card">
+			                    <i class="fa-solid fa-paper-plane"></i>
+			                    <h5>Easy Applications</h5>
+			                    <p>Apply for jobs in just a few clicks.</p>
+			                </div>
+			            </div>
+
+			            <div class="col-md-4">
+			                <div class="why-card">
+			                    <i class="fa-solid fa-chart-line"></i>
+			                    <h5>Application Tracking</h5>
+			                    <p>Monitor every application from one dashboard.</p>
+			                </div>
+			            </div>
+
+			            <div class="col-md-4">
+			                <div class="why-card">
+			                    <i class="fa-solid fa-user-shield"></i>
+			                    <h5>Secure Profile</h5>
+			                    <p>Your information stays protected and confidential.</p>
+			                </div>
+			            </div>
+
+			            <div class="col-md-4">
+			                <div class="why-card">
+			                    <i class="fa-solid fa-bell"></i>
+			                    <h5>Interview Notifications</h5>
+			                    <p>Never miss interview schedules and updates.</p>
+			                </div>
+			            </div>
+
+			            <div class="col-md-4">
+			                <div class="why-card">
+			                    <i class="fa-solid fa-graduation-cap"></i>
+			                    <h5>Career Development</h5>
+			                    <p>Build your profile and grow professionally.</p>
+			                </div>
+			            </div>
+
+			        </div>
+
+			    </div>
+
+			</section>
+		</main>
+	</body>
+</html>

@@ -1,0 +1,170 @@
+.navlogo{
+    height: 50px;
+    width: 50px;
+    border: 3px solid blue;
+    border-radius: 10px;
+}
+
+.login-left{
+    min-height: 600px;
+    width: 500px;
+    border-radius: 25px 0px 0px 25px;
+    background-color: #3940F8;
+}
+
+.login-right{
+    min-height: 600px;
+    width: 400px important;
+    border-radius: 0px 25px 25px 0px;
+}
+
+.heading{
+    color: white;
+}
+
+.para{
+    font-size: 16px;
+    color: white;
+}
+.input-box{
+    position: relative;
+    width: 300px;
+}
+
+.input-box i{
+    position: absolute;
+    left: 54px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: gray;
+}
+
+.input-box input{
+    width: 100%;
+    padding: 10px 10px 10px 40px;
+    border-radius: 15px;
+    margin-left: 45px;
+    border: none;
+    background-color: #eff5fa;
+}
+
+.btn-2{
+    height: 40px;
+    width: 320px;
+    margin-left: 50px;
+}
+
+.tickbox{
+    height: 20px;
+    width: 20px;
+    background-color: red;
+    border-radius: 50%;
+}
+
+.shield{
+    height: 50px;
+    width: 50px;
+    background-color: #5166F9;
+    border-radius: 10px;
+    margin-top: 140px;
+}
+.p{
+    font-size: 12px;
+}
+
+/* About us start */
+
+.row-1{
+    background:linear-gradient(to right,#d5e7ff, white) ;
+    padding: 20px;
+}
+.img-box{
+    height: 200px;
+    width: 550px;
+    background-color:white;
+       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    margin-top: 60px;
+    margin-left: 100px;
+    border-radius: 30px;
+}
+
+.img-banner{
+    height: 170px;
+    width: 520px;
+    margin-top: 15px;
+    margin-left: 15px;
+    border-radius: 30px;
+}
+
+.img-box1{
+    height: 160px;
+    width: 470px;
+    background-color:white;
+       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    margin-top: 40px;
+    margin-left: 100px;
+    border-radius: 30px;
+}
+
+.img-banner1{
+    height: 140px;
+    width: 450px;
+    margin-top: 15px;
+    margin-left: 15px;
+    border-radius: 30px;
+}
+
+.card-box{
+    height: 150px;
+    width: 240px;
+    border-radius: 20px;
+    background-color: white;
+    border: 2px solid white;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.sm-box{
+    height: 50px;
+    width: 50px;
+    background-color: #5166F9;
+   margin-top: 20px;
+   border-radius: 10px;
+   margin-left: 37%;
+}
+
+.card{
+    height: 220px;
+    width: 280px;
+    background-color: white;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    border: 2px solid white;
+}
+.sm2-box{
+    margin-top: 20px;
+    margin-left: 38%;
+    border-radius: 15px;
+}
+
+.col{
+    background-color: #5166F9;
+    border-radius: 30px;
+}
+.img-box2{
+    height: 150px;
+    width: 420px;
+    background-color:white;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    margin-top: 60px;
+    margin-left: 100px;
+    border-radius: 30px;
+}
+
+.img-banner2{
+    height: 130px;
+    width: 400px;
+    margin-top: 10px;
+    margin-left: 10px;
+    border-radius: 30px;
+}
+
+/* about us end */

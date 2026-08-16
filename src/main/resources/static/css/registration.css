@@ -1,0 +1,328 @@
+/*==========================
+      Registration Page
+==========================*/
+
+.registration-page{
+    background:#eef5ff;
+    min-height:100vh;
+    padding-top:40px;
+    padding-bottom:60px;
+}
+
+/* Main Card */
+
+.register-wrapper{
+    border-radius:25px;
+    overflow:hidden;
+    background:white;
+}
+
+
+/*==========================
+        LEFT PANEL
+==========================*/
+
+.register-left{
+
+    position:relative;
+
+    min-height:760px;
+
+    /* Left side panel updated with #4F28F5 gradient */
+    background:
+    linear-gradient(rgba(79, 40, 245, 0.88),
+    rgba(67, 30, 215, 0.92)),
+    url("/images/office.jpg");
+
+    background-size:cover;
+
+    background-position:center;
+
+    color:white;
+
+}
+
+.overlay{
+
+    padding:60px 45px;
+
+    height:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+}
+
+.hero-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    width:max-content;
+
+    padding:8px 18px;
+
+    border-radius:50px;
+
+    background:rgba(255,255,255,.18);
+
+    backdrop-filter:blur(10px);
+
+    font-size:14px;
+
+    margin-bottom:25px;
+
+}
+
+.register-left h1{
+
+    font-size:3rem;
+
+    font-weight:800;
+
+    line-height:1.2;
+
+    margin-bottom:20px;
+
+}
+
+.register-left span{
+
+    color:#FFD54F;
+
+}
+
+.register-left p{
+
+    font-size:17px;
+
+    opacity:.95;
+
+    line-height:1.8;
+
+}
+
+
+/*==========================
+      Feature Boxes
+==========================*/
+
+.feature-list{
+
+    margin-top:40px;
+
+}
+
+.feature{
+
+    background:rgba(255,255,255,.15);
+
+    backdrop-filter:blur(8px);
+
+    border-radius:15px;
+
+    padding:15px 18px;
+
+    margin-bottom:15px;
+
+    transition:.3s;
+
+    font-weight:500;
+
+}
+
+.feature i{
+
+    color:#FFD54F;
+
+    margin-right:12px;
+
+    font-size:18px;
+
+}
+
+.feature:hover{
+
+    transform:translateX(10px);
+
+    background:rgba(255,255,255,.25);
+
+}
+
+
+/*==========================
+       Right Section
+==========================*/
+
+.form-label{
+
+    font-weight:600;
+
+    color:#333;
+
+    margin-bottom:8px;
+
+}
+
+.custom-input{
+
+    border-radius:14px;
+
+    border:1px solid #d9d9d9;
+
+    padding:14px 16px;
+
+    transition:.3s;
+
+    box-shadow:none;
+
+}
+
+.custom-input:focus{
+
+    border-color:#3b82f6;
+
+    box-shadow:0 0 0 .18rem rgba(59,130,246,.15);
+
+}
+
+
+/*==========================
+        Buttons
+==========================*/
+
+.btn-register{
+
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+
+    color:white;
+
+    border:none;
+
+    border-radius:14px;
+
+    padding:14px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.btn-register:hover{
+
+    transform:translateY(-3px);
+
+    color:white;
+
+    box-shadow:0 10px 25px rgba(37,99,235,.35);
+
+}
+
+.btn-login{
+
+    border:2px solid #2563eb;
+
+    color:#2563eb;
+
+    border-radius:14px;
+
+    padding:14px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.btn-login:hover{
+
+    background:#2563eb;
+
+    color:white;
+
+}
+
+
+/*==========================
+      Alert
+==========================*/
+
+.alert-success{
+
+    background:#edfdf5;
+
+    color:#0f766e;
+
+    border-radius:12px;
+
+}
+
+
+/*==========================
+      Responsive
+==========================*/
+
+/*@media(max-width:991px){
+
+.register-left{
+
+min-height:500px;
+
+}
+
+.overlay{
+
+padding:40px 30px;
+
+}
+
+.register-left h1{
+
+font-size:2.3rem;
+
+}
+
+}*/
+
+
+.why-register{
+    background:#f8fbff;
+}
+
+.why-card{
+    background:#fff;
+    border-radius:20px;
+    padding:35px 25px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    transition:.35s;
+    height:100%;
+}
+
+.why-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 40px rgba(37,99,235,.18);
+}
+
+.why-card i{
+    font-size:42px;
+    color:#2563eb;
+    margin-bottom:18px;
+}
+
+.why-card h5{
+    font-weight:700;
+    margin-bottom:12px;
+}
+
+.why-card p{
+    color:#666;
+    line-height:1.7;
+}

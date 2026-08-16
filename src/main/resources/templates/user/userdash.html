@@ -1,0 +1,528 @@
+<html lang="en" th:replace="~{user/userbase :: layout(~{::main})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+    <main>
+        <!-- FontAwesome & Google Fonts Auto-Loader -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+
+        <style>
+            .hrs-dashboard-wrapper {
+                --hrs-primary-gradient: linear-gradient(135deg, #1e52f0 0%, #7000ff 100%);
+                --hrs-bg-light: #f4f7fe;
+                --hrs-text-dark: #1b2559;
+                font-family: 'Poppins', sans-serif;
+                color: var(--hrs-text-dark);
+            }
+
+            /* Welcome Banner Card */
+            .hrs-welcome-banner {
+                background: var(--hrs-primary-gradient) !important;
+                color: #ffffff !important;
+                border-radius: 20px;
+                padding: 2.5rem;
+                position: relative;
+                overflow: hidden;
+                box-shadow: 0 10px 30px rgba(30, 82, 240, 0.2);
+            }
+            .hrs-welcome-banner h2, 
+            .hrs-welcome-banner p, 
+            .hrs-welcome-banner span, 
+            .hrs-welcome-banner i, 
+            .hrs-welcome-banner small {
+                color: #ffffff !important;
+            }
+            .hrs-welcome-banner p.text-white-50 {
+                color: rgba(255, 255, 255, 0.8) !important;
+            }
+            .hrs-welcome-banner::before {
+                content: '';
+                position: absolute;
+                right: -10%;
+                bottom: -30%;
+                width: 300px;
+                height: 300px;
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 50%;
+            }
+            .hrs-portal-tag {
+                background: rgba(255, 255, 255, 0.2) !important;
+                padding: 0.25rem 0.75rem;
+                border-radius: 20px;
+                font-size: 0.75rem;
+                font-weight: 600;
+                display: inline-block;
+                margin-bottom: 1rem;
+                color: #ffffff !important;
+            }
+            .hrs-banner-right-card {
+                background: rgba(255, 255, 255, 0.15) !important;
+                backdrop-filter: blur(5px);
+                border-radius: 15px;
+                padding: 0.8rem 1.2rem;
+                margin-bottom: 0.75rem;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
+            .hrs-banner-icon-box {
+                width: 40px;
+                height: 40px;
+                background: rgba(255, 255, 255, 0.25) !important;
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .hrs-banner-icon-box i {
+                font-size: 1.2rem;
+                color: #ffffff !important;
+            }
+
+            /* Stat Mini-cards */
+            .hrs-stat-card {
+                background: #ffffff;
+                border-radius: 16px;
+                padding: 1.25rem;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+                border: none;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+            .hrs-stat-icon {
+                width: 48px;
+                height: 48px;
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.2rem;
+            }
+
+            /* Action Cards Grid */
+            .hrs-action-card {
+                background: #ffffff;
+                border-radius: 16px;
+                border: none;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+                transition: transform 0.2s, box-shadow 0.2s;
+                text-align: center;
+                padding: 2rem 1.5rem;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+            .hrs-action-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+            }
+            .hrs-action-icon-circle {
+                width: 55px;
+                height: 55px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 1.25rem;
+                font-size: 1.4rem;
+                color: #ffffff !important;
+            }
+            .hrs-action-icon-circle i {
+                color: #ffffff !important;
+            }
+            .hrs-action-card h5 {
+                font-weight: 600;
+                color: var(--hrs-text-dark);
+                margin-bottom: 0.5rem;
+            }
+            .hrs-action-card p {
+                font-size: 0.8rem;
+                color: #718096;
+                margin-bottom: 1.5rem;
+            }
+            .hrs-action-card .btn {
+                border-radius: 8px;
+                padding: 0.5rem 1.5rem;
+                font-size: 0.85rem;
+                font-weight: 500;
+                width: 100%;
+            }
+
+            /* Section Heading Indicator */
+            .hrs-section-title-container {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                margin: 2rem 0 1rem;
+            }
+            .hrs-section-indicator {
+                width: 4px;
+                height: 24px;
+                background-color: #1e52f0;
+                border-radius: 2px;
+            }
+
+            /* Timeline / Progress tracking */
+            .hrs-progress-card {
+                background: #ffffff;
+                border-radius: 16px;
+                padding: 2rem;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            }
+            .hrs-timeline-container {
+                display: flex;
+                justify-content: space-between;
+                position: relative;
+                margin-top: 2rem;
+            }
+            .hrs-timeline-line {
+                position: absolute;
+                top: 20px;
+                left: 5%;
+                right: 5%;
+                height: 3px;
+                background: #e2e8f0;
+                z-index: 1;
+            }
+            .hrs-timeline-step {
+                position: relative;
+                z-index: 2;
+                text-align: center;
+                flex: 1;
+            }
+            .hrs-timeline-icon {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background: #e2e8f0;
+                color: #718096;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 0.5rem;
+            }
+            .hrs-timeline-step.active .hrs-timeline-icon {
+                background: #1e52f0;
+                color: #ffffff !important;
+            }
+            .hrs-timeline-step.active .hrs-timeline-icon i {
+                color: #ffffff !important;
+            }
+            .hrs-timeline-label {
+                font-size: 0.75rem;
+                font-weight: 500;
+                color: #718096;
+            }
+            .hrs-timeline-step.active .hrs-timeline-label {
+                color: #1e52f0;
+                font-weight: 600;
+            }
+
+            /* Info Cards & Activity */
+            .hrs-info-card {
+                background: #ffffff;
+                border-radius: 16px;
+                padding: 1.5rem;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+                height: 100%;
+            }
+            .hrs-activity-item {
+                display: flex;
+                gap: 15px;
+                margin-bottom: 1.25rem;
+            }
+            .hrs-activity-icon {
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+                color: #ffffff !important;
+                font-size: 0.9rem;
+            }
+            .hrs-activity-icon i {
+                color: #ffffff !important;
+            }
+
+            /* Support Card Strict White Text */
+            .hrs-support-card {
+                background: var(--hrs-primary-gradient) !important;
+                color: #ffffff !important;
+                border-radius: 16px;
+                padding: 1.5rem;
+                box-shadow: 0 6px 20px rgba(30, 82, 240, 0.15);
+            }
+            .hrs-support-card h5, 
+            .hrs-support-card p, 
+            .hrs-support-card li, 
+            .hrs-support-card i {
+                color: #ffffff !important;
+            }
+            .hrs-support-card p.text-white-50 {
+                color: rgba(255, 255, 255, 0.8) !important;
+            }
+            .hrs-support-icon-box {
+                width: 45px;
+                height: 45px;
+                background: rgba(255, 255, 255, 0.25) !important;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+            }
+        </style>
+
+        <div class="hrs-dashboard-wrapper p-2">
+            <!-- Dashboard Title Header -->
+            <div class="mb-4">
+                <h3 class="fw-bold mb-1">Hello User Dashboard</h3>
+                <p class="text-muted small mb-0">Manage your career journey</p>
+            </div>
+
+            <!-- Gradient Welcome Banner Card -->
+            <div class="hrs-welcome-banner mb-4">
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <span class="hrs-portal-tag"><i class="fa-solid fa-star me-1"></i> Career Portal</span>
+                        <h2 class="fw-bold mb-2">Welcome to Karam-HRMS<br>Career Portal</h2>
+                        <p class="text-white-50 mb-4" style="max-width: 600px;">Explore job opportunities, manage your profile, update your resume, and track all your applications from one dashboard.</p>
+                        <div class="d-flex gap-2">
+                            <!-- Fixed to /user/viewjobs -->
+                            <a th:href="@{/user/viewjobs}" class="btn btn-white text-primary bg-white fw-semibold px-4 rounded-pill"><i class="fa-solid fa-folder-open me-2 text-primary"></i>Browse Jobs</a>
+                            <!-- Fixed to /user/givresponse -->
+                            <a th:href="@{/user/givresponse}" class="btn btn-outline-light fw-semibold px-4 rounded-pill"><i class="fa-solid fa-file-lines me-2"></i>Give Response</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mt-4 mt-lg-0">
+                        <div class="hrs-banner-right-card">
+                            <div class="hrs-banner-icon-box"><i class="fa-solid fa-rocket"></i></div>
+                            <div>
+                                <span class="d-block fw-semibold lh-sm" style="font-size:0.85rem;">Career Growth</span>
+                                <small class="text-white-50" style="font-size:0.7rem;">Track your journey</small>
+                            </div>
+                        </div>
+                        <div class="hrs-banner-right-card">
+                            <div class="hrs-banner-icon-box"><i class="fa-solid fa-circle-check"></i></div>
+                            <div>
+                                <span class="d-block fw-semibold lh-sm" style="font-size:0.85rem;">Applications</span>
+                                <small class="text-white-50" style="font-size:0.7rem;">Manage with ease</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4 Small Overview Stats Horizontal Counters -->
+            <div class="row g-3 mb-4">
+                <div class="col-md-3">
+                    <a th:href="@{/user/viewjobs}" class="text-decoration-none">
+                        <div class="hrs-stat-card">
+                            <div class="hrs-stat-icon bg-primary bg-opacity-10 text-primary"><i class="fa-solid fa-briefcase text-primary"></i></div>
+                            <div>
+                                <span class="d-block text-muted" style="font-size:0.75rem;">Available Jobs</span>
+                                <span class="fw-bold text-dark">Browse Jobs</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a th:href="@{/user/givresponse}" class="text-decoration-none">
+                        <div class="hrs-stat-card">
+                            <div class="hrs-stat-icon bg-warning bg-opacity-10 text-warning"><i class="fa-solid fa-reply"></i></div>
+                            <div>
+                                <span class="d-block text-muted" style="font-size:0.75rem;">Responses Given</span>
+                                <span class="fw-bold text-dark">Give Response</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a th:href="@{/user/viewprofile}" class="text-decoration-none">
+                        <div class="hrs-stat-card">
+                            <div class="hrs-stat-icon bg-success bg-opacity-10 text-success"><i class="fa-solid fa-user-check"></i></div>
+                            <div>
+                                <span class="d-block text-muted" style="font-size:0.75rem;">Profile Status</span>
+                                <span class="fw-bold text-success" style="font-size:0.85rem;">Active</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a th:href="@{/user/changepwd}" class="text-decoration-none">
+                        <div class="hrs-stat-card">
+                            <div class="hrs-stat-icon bg-info bg-opacity-10 text-info"><i class="fa-solid fa-key"></i></div>
+                            <div>
+                                <span class="d-block text-muted" style="font-size:0.75rem;">Security</span>
+                                <span class="fw-bold text-dark">Change Password</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Section Title Quick Actions -->
+            <div class="hrs-section-title-container">
+                <div class="hrs-section-indicator"></div>
+                <h5 class="fw-bold mb-0 d-flex align-items-center gap-2"><i class="fa-solid fa-cubes text-secondary"></i> Quick Actions</h5>
+            </div>
+
+            <!-- Quick Action Interactive Grid Layout Blocks -->
+            <div class="row g-3 mb-4">
+                <div class="col-md-3">
+                    <div class="hrs-action-card">
+                        <div>
+                            <div class="hrs-action-icon-circle bg-primary"><i class="fa-solid fa-briefcase"></i></div>
+                            <h5>View Jobs</h5>
+                            <p>Explore current vacancies and apply for suitable positions.</p>
+                        </div>
+                        <a th:href="@{/user/viewjobs}" class="btn btn-primary">View Jobs</a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="hrs-action-card">
+                        <div>
+                            <div class="hrs-action-icon-circle bg-warning" style="background-color:#d97706 !important;"><i class="fa-solid fa-reply"></i></div>
+                            <h5>Give Response</h5>
+                            <p>Submit responses to recruiters and track updates.</p>
+                        </div>
+                        <!-- Fixed to /user/givresponse -->
+                        <a th:href="@{/user/givresponse}" class="btn btn-warning text-white" style="background-color:#d97706; border-color:#d97706;">Give Response</a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="hrs-action-card">
+                        <div>
+                            <div class="hrs-action-icon-circle bg-success" style="background-color:#0d9488 !important;"><i class="fa-solid fa-address-card"></i></div>
+                            <h5>View Profile</h5>
+                            <p>View your personal detail, qualifications, experience, and skills.</p>
+                        </div>
+                        <!-- Fixed to /user/viewprofile -->
+                        <a th:href="@{/user/viewprofile}" class="btn btn-success" style="background-color:#0d9488; border-color:#0d9488;">View Profile</a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="hrs-action-card">
+                        <div>
+                            <div class="hrs-action-icon-circle" style="background-color:#4f46e5;"><i class="fa-solid fa-key"></i></div>
+                            <h5>Change Password</h5>
+                            <p>Improve account security by changing your password.</p>
+                        </div>
+                        <!-- Fixed to /user/changepwd -->
+                        <a th:href="@{/user/changepwd}" class="btn text-white" style="background-color:#4f46e5;">Change Password</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Two Column Row Base Data Layout Setup -->
+            <div class="row g-4 mb-4">
+                <!-- Application Stage Tracker Line View -->
+                <div class="col-lg-8">
+                    <div class="hrs-progress-card h-100">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h6 class="fw-bold mb-0"><i class="fa-solid fa-users-gear me-2 text-secondary"></i>Application Progress</h6>
+                            <span class="text-muted" style="font-size:0.75rem;">Typical recruitment stages</span>
+                        </div>
+                        <div class="hrs-timeline-container">
+                            <div class="hrs-timeline-line"></div>
+                            <div class="hrs-timeline-step active">
+                                <div class="hrs-timeline-icon"><i class="fa-solid fa-paper-plane" style="font-size: 0.8rem;"></i></div>
+                                <div class="hrs-timeline-label">Application Submitted</div>
+                            </div>
+                            <div class="hrs-timeline-step">
+                                <div class="hrs-timeline-icon"><i class="fa-regular fa-circle" style="font-size: 0.8rem;"></i></div>
+                                <div class="hrs-timeline-label text-muted">Resume Review</div>
+                            </div>
+                            <div class="hrs-timeline-step">
+                                <div class="hrs-timeline-icon"><i class="fa-regular fa-star" style="font-size: 0.8rem;"></i></div>
+                                <div class="hrs-timeline-label text-muted">Shortlisted</div>
+                            </div>
+                            <div class="hrs-timeline-step">
+                                <div class="hrs-timeline-icon"><i class="fa-regular fa-comments" style="font-size: 0.8rem;"></i></div>
+                                <div class="hrs-timeline-label text-muted">Interview</div>
+                            </div>
+                            <div class="hrs-timeline-step">
+                                <div class="hrs-timeline-icon"><i class="fa-solid fa-handshake" style="font-size: 0.8rem;"></i></div>
+                                <div class="hrs-timeline-label text-muted">Hired</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Career Development Tips Panel Box -->
+                <div class="col-lg-4">
+                    <div class="hrs-info-card">
+                        <h6 class="fw-bold mb-3"><i class="fa-regular fa-lightbulb me-2 text-secondary"></i>Career Tips</h6>
+                        <ul class="list-unstyled d-flex flex-column gap-2 mb-0" style="font-size:0.8rem;">
+                            <li class="bg-light p-2 rounded d-flex align-items-center gap-2"><i class="fa-solid fa-circle-check text-success"></i> Keep your resume updated</li>
+                            <li class="bg-light p-2 rounded d-flex align-items-center gap-2"><i class="fa-solid fa-circle-check text-success"></i> Complete your profile fully</li>
+                            <li class="bg-light p-2 rounded d-flex align-items-center gap-2"><i class="fa-solid fa-circle-check text-success"></i> Apply for suitable roles only</li>
+                            <li class="bg-light p-2 rounded d-flex align-items-center gap-2"><i class="fa-solid fa-circle-check text-success"></i> Prepare for technical interviews</li>
+                            <li class="bg-light p-2 rounded d-flex align-items-center gap-2"><i class="fa-solid fa-circle-check text-success"></i> Check application status regularly</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lower Level Layout Data Double Grid Matrix System Blocks -->
+            <div class="row g-4 mb-4">
+                <!-- Activity History Log Timeline List Structure -->
+                <div class="col-lg-8">
+                    <div class="hrs-info-card">
+                        <h6 class="fw-bold mb-4"><i class="fa-solid fa-clock-rotate-left me-2 text-secondary"></i>Recent Activity</h6>
+                        
+                        <div class="hrs-activity-item">
+                            <div class="hrs-activity-icon bg-primary"><i class="fa-regular fa-eye"></i></div>
+                            <div>
+                                <span class="d-block fw-semibold" style="font-size:0.85rem;">Profile Viewed</span>
+                                <small class="text-muted">Your profile was recently viewed by a recruiter</small>
+                            </div>
+                        </div>
+                        <div class="hrs-activity-item">
+                            <div class="hrs-activity-icon bg-warning" style="background-color: #d97706 !important;"><i class="fa-solid fa-paper-plane"></i></div>
+                            <div>
+                                <span class="d-block fw-semibold" style="font-size:0.85rem;">Response Submitted</span>
+                                <small class="text-muted">You have submitted responses</small>
+                            </div>
+                        </div>
+                        <div class="hrs-activity-item mb-0">
+                            <div class="hrs-activity-icon" style="background-color: #7c3aed;"><i class="fa-solid fa-briefcase"></i></div>
+                            <div>
+                                <span class="d-block fw-semibold" style="font-size:0.85rem;">New Jobs Posted</span>
+                                <small class="text-muted">New positions are available — browse now</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Support Contact Center Panel -->
+                <div class="col-lg-4">
+                    <div class="hrs-support-card d-flex flex-column justify-content-between h-100">
+                        <div>
+                            <div class="hrs-support-icon-box"><i class="fa-solid fa-headset"></i></div>
+                            <h5 class="fw-bold mb-1">Recruitment Support</h5>
+                            <p class="text-white-50 small mb-3">Need help with your application or profile?</p>
+                            
+                            <ul class="list-unstyled d-flex flex-column gap-2 mb-4" style="font-size:0.8rem;">
+                                <li class="d-flex align-items-center gap-2"><i class="fa-regular fa-envelope"></i> support@hrsynergy.com</li>
+                                <li class="d-flex align-items-center gap-2"><i class="fa-solid fa-phone"></i> +1 (555) 019-2834</li>
+                            </ul>
+                        </div>
+                        <!-- Fixed link -->
+                        <a th:href="@{/user/givresponse}" class="btn btn-light text-primary fw-semibold rounded-pill mt-auto w-100 text-decoration-none text-center py-2">Contact Support</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,572 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    overflow-x:hidden;
+}
+
+body{
+    margin:0;
+    padding:0;
+}
+
+.container-fluid{
+    padding-left:0 !important;
+    padding-right:0 !important;
+}
+
+.about-hero{
+
+    background:url("../images/poster.png");
+
+    background-size:cover;
+
+    background-position:center;
+
+    position:relative;
+
+    min-height:520px;
+
+}
+
+.hero-overlay{
+
+    background:rgba(67,72,255,.78);
+
+    min-height:520px;
+
+    display:flex;
+
+    align-items:center;
+
+}
+
+.hero-badge{
+
+    display:inline-block;
+
+    background:white;
+
+    color:#4353ff;
+
+    padding:10px 20px;
+
+    border-radius:40px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+.hero-title{
+
+    color:white;
+
+    font-size:60px;
+
+    font-weight:700;
+
+    margin-top:30px;
+
+}
+
+.hero-title span{
+
+    color:#ffd23f;
+
+}
+
+.hero-text{
+
+    color:black;
+
+    font-size:18px;
+
+    margin:25px 0;
+
+}
+
+.hero-btn{
+
+    background:white;
+
+    color:#4353ff;
+
+    padding:12px 28px;
+
+    border-radius:30px;
+
+    font-weight:600;
+
+}
+
+.hero-btn:hover{
+
+    background:#082435;
+
+    color:white;
+
+}
+
+.hero-card{
+
+    background:rgba(255,255,255,.15);
+
+    backdrop-filter:blur(10px);
+
+    border-radius:25px;
+
+    padding:40px;
+
+    color:white;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.2);
+
+}
+
+.icon-box{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:18px;
+
+    background:white;
+
+    color:#4353ff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:28px;
+
+    margin-bottom:20px;
+
+}
+
+.about-img{
+
+    border-radius:25px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+
+}
+
+.section-tag{
+
+    color:#4353ff;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+}
+
+.section-title{
+
+    font-size:42px;
+
+    font-weight:700;
+
+    margin:20px 0;
+
+}
+
+.section-text{
+
+    color:#666;
+
+    line-height:1.9;
+
+}
+
+.info-card{
+
+    background:white;
+
+    padding:45px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.info-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.info-card h3{
+
+    font-weight:700;
+
+}
+
+/* ================= Sections ================= */
+
+.feature-section,
+.choose-section{
+
+    background:#f7f9fc;
+
+    padding:90px 0;
+
+}
+
+.section-badge{
+
+    color:#4f46e5;
+
+    font-weight:700;
+
+    font-size:14px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+}
+
+.section-heading{
+
+    font-size:44px;
+
+    font-weight:700;
+
+    color:#1e293b;
+
+    margin-top:15px;
+
+}
+
+
+
+/* ================= Feature Cards ================= */
+
+.feature-card{
+
+    background:#fff;
+
+    border-radius:22px;
+
+    padding:40px 20px;
+
+    text-align:center;
+
+    transition:.35s;
+
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+
+    height:100%;
+
+}
+
+.feature-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 25px 50px rgba(79,70,229,.18);
+
+}
+
+.feature-icon{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:20px;
+
+    background:linear-gradient(135deg,#4f46e5,#6d28d9);
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin:0 auto 25px;
+
+    font-size:28px;
+
+}
+
+.feature-card h5{
+
+    font-size:18px;
+
+    font-weight:700;
+
+}
+
+
+
+/* ================= Choose Cards ================= */
+
+.choose-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:22px;
+
+    text-align:center;
+
+    font-weight:600;
+
+    transition:.3s;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+}
+
+.choose-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.choose-card i{
+
+    color:#10b981;
+
+    margin-right:10px;
+
+}
+
+
+/*================ Technology ================*/
+
+.tech-section{
+
+    padding:90px 0;
+
+}
+
+.tech-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:35px 20px;
+
+    text-align:center;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+}
+
+.tech-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.tech-card i{
+
+    font-size:45px;
+
+    color:#4f46e5;
+
+    margin-bottom:20px;
+
+}
+
+
+
+/*================ Counter =================*/
+
+.counter-section{
+
+    background:linear-gradient(135deg,#4f46e5,#6d28d9);
+
+    padding:80px 0;
+
+    color:white;
+
+}
+
+.counter-section h2{
+
+    font-size:48px;
+
+    font-weight:700;
+
+}
+
+.counter-section p{
+
+    font-size:18px;
+
+}
+
+
+
+/*================ Modern =================*/
+
+.modern-section{
+
+    padding:90px 0;
+
+}
+
+.modern-img{
+
+    border-radius:25px;
+
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+
+}
+
+.modern-list{
+
+    list-style:none;
+
+    padding:0;
+
+}
+
+.modern-list li{
+
+    padding:12px 0;
+
+    font-size:17px;
+
+}
+
+.modern-list i{
+
+    color:#10b981;
+
+    margin-right:10px;
+
+}
+
+
+
+/*================ CTA =================*/
+
+.cta-section{
+
+    background:url("../images/corporate.jpeg") center/cover;
+
+    margin-top:80px;
+
+}
+
+.cta-overlay{
+
+    background:rgba(79,70,229,.90);
+
+    padding:100px 0;
+
+}
+
+.section-subtitle{
+
+    color:#777;
+
+    max-width:700px;
+
+    margin:auto;
+
+}
+
+.contact-page .card{
+    height: 250px !important ;
+    width: 280px !important;
+    background-color:white !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08) !important;
+    border: 2px solid white !important;
+}
+
+.contact-page .bg-image{
+    background: url("../images/bgc-img.png") no-repeat center;
+    background-size: 100% 100%;
+    height: 400px;
+    position: relative;
+}
+.contact-page .content{
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+}
+
+.contact-page .badge{
+    background: rgba(255,166,0,0.15);
+    color: orange;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.contact-page .content h1{
+    color: white;
+    font-size: 48px;
+    line-height: 1.2;
+}
+
+.contact-page .content p{
+    font-size: 15px;
+    color: #d7d7d7;
+}
+
+.contact-page .cards-section{
+    position: relative;
+    margin-top: -60px;  
+    margin-left: 70px;
+    z-index: 10;
+}
+
+.contact-page .left-box{
+    padding: 10px;
+    height: 800px;
+    width: 500px;
+    background: #0f2b3b;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,.15);
+}
+
+.contact-page .right-box{
+    height: 800px;
+    width: 700px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,.15);
+}
+
+.contact-page .icon-box{
+    width:50px;
+    height:50px;
+    border:1px solid #c79635;
+    border-radius:50px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#d89b33;
+    flex-shrink:0;
+}
+.contact-page .icon-box i{
+    font-size:16px;
+}

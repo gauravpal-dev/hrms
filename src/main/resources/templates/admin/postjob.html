@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{admin/adminbase :: layout(~{::main})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Job Details</title>
+</head>
+<body>
+<main>
+    <!-- Bootstrap 5 CSS & FontAwesome Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Minimal Essential CSS -->
+    <style>
+        .hero-banner { background: linear-gradient(135deg, #614ef6, #9b51e0); }
+        .bg-purple { background-color: #614ef6 !important; }
+        .btn-purple { 
+            background: linear-gradient(135deg, #614ef6, #9b51e0); 
+            color: white; 
+            border: none;
+        }
+        .btn-purple:hover {
+            background: linear-gradient(135deg, #503ee4, #8a3fd8);
+            color: white;
+        }
+        .hero-banner i {
+            color: white;
+        }
+    </style>
+
+    <div class="container my-4" style="max-width: 800px;">
+
+        <!-- Top Hero Header Banner -->
+        <div class="hero-banner text-white p-4 rounded-4 d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3 shadow-sm">
+            <div class="d-flex align-items-center gap-3">
+                <div class="bg-white bg-opacity-10 rounded-3 d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
+                    <i class="fa-solid fa-file-circle-plus fs-4"></i>
+                </div>
+                <div>
+                    <h3 class="mb-0 fw-bold fs-4">Post Job Details</h3>
+                    <small class="opacity-75">Deploy new job opportunities to the candidate portal</small>
+                </div>
+            </div>
+            <a th:href="@{/admin/admindashboard}" class="btn btn-light bg-opacity-25 text-primary fw-bold border-0 rounded-pill px-3 py-1 btn-sm">
+                <i class="fa-solid fa-arrow-left me-1 text-primary"></i> Dashboard
+            </a>
+        </div>
+
+        <!-- Alert Notification -->
+        <div th:if="${msg}" class="alert alert-success alert-dismissible fade show rounded-3 shadow-sm mb-4" role="alert">
+            <i class="fa-solid fa-circle-check me-2"></i>
+            <span th:text="${msg}">Job deployed successfully!</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <!-- Main Form Card Container -->
+        <div class="card border-0 rounded-4 p-4 p-md-5 shadow-sm">
+            <div class="fw-bold fs-5 text-dark mb-4 d-flex align-items-center gap-2 border-bottom pb-3">
+                <i class="fa-solid fa-pen-to-square text-primary"></i> Job Information
+            </div>
+
+            <form method="post" th:object="${jdto}">
+                <div class="row g-3">
+
+                    <!-- Job Title -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold small text-secondary">Job Title</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0"><i class="fa-solid fa-briefcase text-muted"></i></span>
+                            <input type="text" th:field="${jdto.title}" class="form-control bg-light border-start-0" required placeholder="e.g. Lead Dev Ops / Java Developer" />
+                        </div>
+                    </div>
+
+                    <!-- Job Type -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold small text-secondary">Select Job Type</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0"><i class="fa-solid fa-clock text-muted"></i></span>
+                            <select class="form-select bg-light border-start-0" th:field="${jdto.jobtype}">
+                                <option value="Full Time">Full Time</option>
+                                <option value="Part Time">Part Time</option>
+                                <option value="Internship">Internship</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Location -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold small text-secondary">Job Location</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0"><i class="fa-solid fa-location-dot text-muted"></i></span>
+                            <input type="text" th:field="${jdto.location}" class="form-control bg-light border-start-0" required placeholder="e.g. Noida / Remote" />
+                        </div>
+                    </div>
+
+                    <!-- Salary -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold small text-secondary">Salary Details</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0"><i class="fa-solid fa-indian-rupee-sign text-muted"></i></span>
+                            <input type="number" th:field="${jdto.salary}" class="form-control bg-light border-start-0" required placeholder="Enter package / salary..." />
+                        </div>
+                    </div>
+
+                    <!-- Application Deadline -->
+                    <div class="col-12">
+                        <label class="form-label fw-bold small text-secondary">Application Deadline (Last Date)</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0"><i class="fa-solid fa-calendar-days text-muted"></i></span>
+                            <input type="date" th:field="${jdto.lastdate}" class="form-control bg-light border-start-0" required />
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="col-12">
+                        <label class="form-label fw-bold small text-secondary">Enter Description</label>
+                        <textarea th:field="${jdto.description}" class="form-control bg-light" rows="5" required placeholder="Outline project stack, team expectations, and experience metrics..."></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="col-12 mt-4 pt-2">
+                        <button type="submit" class="btn btn-purple rounded-pill w-100 py-2.5 fw-bold shadow-sm">
+                            <i class="fa-solid fa-paper-plane me-2"></i> Post The Job
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/bootstrap.bundle.min.js"></script>
+</main>
+</body>
+</html>

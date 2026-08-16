@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{admin/adminbase :: layout(~{::main})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Synergy - Admin Dashboard</title>
+</head>
+<body>
+<main>
+    <!-- Bootstrap 5 CSS & FontAwesome CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-purple: #6f42c1;
+            --gradient-header: linear-gradient(135deg, #6c5ce7, #8c7ae6);
+            --card-blue: #4a77e5;
+            --card-orange: #f2994a;
+            --card-green: #27ae60;
+            --card-purple: #9b51e0;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Top Hero Header Banner */
+        .hero-banner {
+            background: linear-gradient(135deg, #614ef6, #9b51e0);
+            border-radius: 16px;
+            color: white;
+            padding: 24px 30px;
+        }
+        
+        .icon-box-bg {
+            background: rgba(255, 255, 255, 0.2);
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .hero-banner i, .card i {
+            color: white !important;
+        }
+
+        .hero-banner a i.text-primary {
+            color: #0d6efd !important;
+        }
+
+        /* Stat Cards */
+        .stat-card {
+            border: none;
+            border-radius: 16px;
+            color: white;
+            padding: 20px;
+            height: 100%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-3px);
+        }
+        .stat-card.blue { background-color: var(--card-blue); }
+        .stat-card.orange { background-color: var(--card-orange); }
+        .stat-card.green { background-color: var(--card-green); }
+        .stat-card.purple { background-color: var(--card-purple); }
+
+        .stat-icon-wrapper {
+            background: rgba(255, 255, 255, 0.25);
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+        .stat-card .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+        .stat-card .stat-label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 6px;
+            opacity: 0.9;
+        }
+
+        /* Action & Module Cards */
+        .module-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid #eef2f5;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            height: 100%;
+        }
+
+        .quick-action-btn {
+            border-radius: 12px;
+            padding: 12px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        /* Custom Purple Button & Border Fix */
+        .btn-outline-purple {
+            color: #614ef6;
+            border: 1px solid #614ef6;
+            background-color: transparent;
+        }
+
+        .btn-outline-purple:hover {
+            background-color: #614ef6;
+            color: #ffffff !important;
+        }
+
+        .btn-outline-purple:hover i {
+            color: #ffffff !important;
+        }
+
+        .text-purple {
+            color: #614ef6 !important;
+        }
+
+        /* Table Styling */
+        .custom-table thead th {
+            background-color: #614ef6;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 12px 10px;
+            border: none;
+        }
+        .custom-table thead th:first-child { border-top-left-radius: 6px; border-bottom-left-radius: 6px; }
+        .custom-table thead th:last-child { border-top-right-radius: 6px; border-bottom-right-radius: 6px; }
+    </style>
+
+    <div class="container my-4">
+
+        <!-- Top Dashboard Banner Header -->
+        <div class="hero-banner d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3 shadow-sm">
+            <div class="d-flex align-items-center gap-3">
+                <div class="icon-box-bg">
+                    <i class="fa-solid fa-gauge-high fs-4"></i>
+                </div>
+                <div>
+                    <h3 class="mb-0 fw-bold fs-4">Admin Dashboard Overview</h3>
+                    <small class="opacity-75">Welcome back! Here is what's happening across HR Synergy system.</small>
+                </div>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+                <a th:href="@{/admin/postjob}" class="btn btn-light text-primary fw-bold rounded-pill px-3 py-1 btn-sm shadow-sm">
+                    <i class="fa-solid fa-plus me-1 text-primary"></i> Post New Job
+                </a>
+                <a th:href="@{/admin/logout}" class="btn btn-light bg-opacity-25 text-primary fw-bold border-0 rounded-pill px-3 py-1 btn-sm">
+                    <i class="fa-solid fa-right-from-bracket me-1 text-primary"></i> Logout
+                </a>
+            </div>
+        </div>
+
+        <!-- Alert Notification -->
+        <div th:if="${msg}" class="alert alert-danger alert-dismissible fade show rounded-3 shadow-sm mb-4" role="alert">
+            <i class="fa-solid fa-circle-exclamation me-2"></i>
+            <span th:text="${msg}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <!-- Metric Summary Cards -->
+        <div class="row g-3 mb-4">
+            <div class="col-12 col-sm-6 col-lg-3">
+                <a th:href="@{/admin/jobseeker}" class="text-decoration-none">
+                    <div class="stat-card blue">
+                        <div class="stat-icon-wrapper">
+                            <i class="fa-solid fa-users fs-5"></i>
+                        </div>
+                        <div class="stat-number" th:text="${usercounter != null ? usercounter : '0'}">0</div>
+                        <div class="stat-label">Total Job Seekers</div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <a th:href="@{/admin/enquiry}" class="text-decoration-none">
+                    <div class="stat-card orange">
+                        <div class="stat-icon-wrapper">
+                            <i class="fa-solid fa-headset fs-5"></i>
+                        </div>
+                        <div class="stat-number">View</div>
+                        <div class="stat-label">Customer Enquiries</div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <a th:href="@{/admin/viewfeedback}" class="text-decoration-none">
+                    <div class="stat-card green">
+                        <div class="stat-icon-wrapper">
+                            <i class="fa-solid fa-comments fs-5"></i>
+                        </div>
+                        <div class="stat-number">View</div>
+                        <div class="stat-label">User Feedbacks</div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <a th:href="@{/admin/viewcomplain}" class="text-decoration-none">
+                    <div class="stat-card purple">
+                        <div class="stat-icon-wrapper">
+                            <i class="fa-solid fa-triangle-exclamation fs-5"></i>
+                        </div>
+                        <div class="stat-number">View</div>
+                        <div class="stat-label">Complaints Registered</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Quick Action Shortcuts -->
+        <div class="row g-3 mb-4">
+            <div class="col-12">
+                <div class="module-card">
+                    <h5 class="fw-bold mb-3 text-dark fs-6"><i class="fa-solid fa-bolt text-warning me-2"></i>Quick Admin Actions</h5>
+                    <div class="row g-2">
+                        <div class="col-6 col-md-3">
+                            <a th:href="@{/admin/jobseeker}" class="btn btn-outline-primary w-100 quick-action-btn">
+                                <i class="fa-solid fa-users"></i> View Seekers
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <a th:href="@{/admin/postedjob}" class="btn btn-outline-warning w-100 quick-action-btn">
+                                <i class="fa-solid fa-briefcase"></i> Posted Jobs
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <a th:href="@{/admin/appliedjobs}" class="btn btn-outline-success w-100 quick-action-btn">
+                                <i class="fa-solid fa-file-signature"></i> Applied Jobs
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <a th:href="@{/admin/changeadminpwd}" class="btn btn-outline-purple w-100 quick-action-btn">
+                                <i class="fa-solid fa-key text-purple"></i> Change Password
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Content Grid -->
+        <div class="row g-3">
+            <div class="col-12 col-lg-8">
+                <div class="module-card">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="fw-bold mb-0 text-dark fs-6"><i class="fa-solid fa-list-ul text-primary me-2"></i>System Modules</h5>
+                        <span class="badge bg-success-subtle text-success border border-success-subtle fw-semibold">Active Navigation</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table custom-table align-middle text-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th>MODULE NAME</th>
+                                    <th>STATUS</th>
+                                    <th>ACTION</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="fw-bold text-start text-primary"><i class="fa-solid fa-users me-2"></i>Job Seekers List</td>
+                                    <td><span class="badge bg-success">Active</span></td>
+                                    <td><a th:href="@{/admin/jobseeker}" class="btn btn-sm btn-light border fw-semibold">View</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold text-start text-warning"><i class="fa-solid fa-headset me-2"></i>Enquiries Desk</td>
+                                    <td><span class="badge bg-success">Active</span></td>
+                                    <td><a th:href="@{/admin/enquiry}" class="btn btn-sm btn-light border fw-semibold">View</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold text-start text-success"><i class="fa-solid fa-comments me-2"></i>Feedbacks List</td>
+                                    <td><span class="badge bg-success">Active</span></td>
+                                    <td><a th:href="@{/admin/viewfeedback}" class="btn btn-sm btn-light border fw-semibold">View</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold text-start text-danger"><i class="fa-solid fa-triangle-exclamation me-2"></i>Complaints Desk</td>
+                                    <td><span class="badge bg-success">Active</span></td>
+                                    <td><a th:href="@{/admin/viewcomplain}" class="btn btn-sm btn-light border fw-semibold">View</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-4">
+                <div class="module-card">
+                    <h5 class="fw-bold mb-3 text-dark fs-6"><i class="fa-solid fa-shield-halved text-purple me-2"></i>Admin Quick Profile</h5>
+                    <div class="p-3 bg-light rounded-3 mb-3">
+                        <div class="small text-muted">Current Role</div>
+                        <div class="fw-bold text-dark">Super Administrator</div>
+                    </div>
+                    <div class="p-3 bg-light rounded-3 mb-3">
+                        <div class="small text-muted">Server Status</div>
+                        <div class="fw-bold text-success"><i class="fa-solid fa-circle me-1 fs-6"></i> System Operational</div>
+                    </div>
+                    <div class="p-3 bg-light rounded-3">
+                        <a th:href="@{/admin/changeadminpwd}" class="btn btn-sm btn-outline-purple w-100 fw-bold">
+                            <i class="fa-solid fa-lock me-1"></i> Change Password
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/bootstrap.bundle.min.js"></script>
+</main>
+</body>
+</html>

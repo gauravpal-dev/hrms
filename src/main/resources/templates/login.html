@@ -1,0 +1,54 @@
+<html lang="en" th:replace="~{base::layout(~{::main})}">
+<body>
+	<main>
+		<!-- login start -->
+		<div class="col-sm-8 mx-auto">
+			<div class="row">
+				<div class="col-sm-6 login-left">
+					<div class="shield ms-5">
+						<i class="fa-solid fa-shield-halved fa-2x"
+							style="margin-top: 8px; margin-left: 5px; color: white;"></i>
+					</div>
+					<h2 class="heading ms-5 mt-3">Welcome back</h2>
+					<p class="para mx-5">Sign in to manage your workspace track
+						your team and stay on top of everything that matters.</p>
+					<p class="text-light mt-5 ms-5">
+						<i class="fa-solid fa-circle-check"></i>&nbsp;&nbsp;Source
+						role-based access
+					</p>
+					<p class="text-light mt-2 ms-5">
+						<i class="fa-solid fa-circle-check"></i>&nbsp;&nbsp;Source
+						role-based access
+					</p>
+					<p class="text-light mt-2 ms-5">
+						<i class="fa-solid fa-circle-check"></i>&nbsp;&nbsp;Source
+						role-based access
+					</p>
+				</div>
+				<div class="col-sm-6 login-right bg-light">
+					<h1 class="mt-5 ms-4">login</h1>
+					<p class="text-tertiaryy ms-4">Enter your credentials to continue</p>
+					<form method="post" th:action="@{/login}">
+						<h6 class="ms-5 mt-5">User Id</h6>
+						<div class="input-box">
+							<i class="fa-solid fa-user"></i> <input type="email" name="emailaddress"
+								placeholder="Enter Emailaddress">
+						</div>
+						<h6 class="ms-5 mt-3">Password</h6>
+						<div class="input-box">
+							<i class="fa-solid fa-lock"></i> <input type="password" name="password"
+								placeholder="Enter User ID">
+						</div>
+
+						<button type="submit" class="btn bg-primary mt-5 btn-2 text-white">
+							Login &nbsp;<i class="fa-solid fa-arrow-right"></i>
+						</button>
+					</form>
+					<p class="mt-2 text-primary" style="margin-left: 140px;">Forget Password&nbsp;?</p>
+				</div>
+			</div>
+		</div>
+		<!-- login end -->
+	</main>
+</body>
+</html>
